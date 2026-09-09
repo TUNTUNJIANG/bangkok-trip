@@ -15,13 +15,14 @@ body{font-family:'Noto Sans SC',-apple-system,BlinkMacSystemFont,sans-serif;back
 .tab-bar::-webkit-scrollbar{display:none}
 .tb{flex-shrink:0;padding:10px 14px;font-size:13px;font-weight:500;color:var(--sub);background:none;border:none;cursor:pointer;border-bottom:2px solid transparent;transition:all .2s}
 .tb.active{color:var(--text);font-weight:700;border-bottom-color:var(--text)}
-#page{touch-action:pan-y;cursor:grab;will-change:transform,opacity}
+#page{touch-action:pan-y;cursor:grab;will-change:transform,opacity;transform-style:preserve-3d}
 #page.swipe-dragging{cursor:grabbing;user-select:none}
-#page.page-enter-next{animation:page-enter-next .32s cubic-bezier(.22,.61,.36,1) both}
-#page.page-enter-prev{animation:page-enter-prev .32s cubic-bezier(.22,.61,.36,1) both}
-@keyframes page-enter-next{from{opacity:.35;transform:translateX(28px)}to{opacity:1;transform:translateX(0)}}
-@keyframes page-enter-prev{from{opacity:.35;transform:translateX(-28px)}to{opacity:1;transform:translateX(0)}}
-@media (prefers-reduced-motion:reduce){#page.page-enter-next,#page.page-enter-prev{animation:none}}
+#page.page-flip-next,#page.page-flip-prev{backface-visibility:hidden}
+#page.page-flip-next{animation:page-flip-next .48s cubic-bezier(.22,.61,.36,1) both;transform-origin:left center}
+#page.page-flip-prev{animation:page-flip-prev .48s cubic-bezier(.22,.61,.36,1) both;transform-origin:right center}
+@keyframes page-flip-next{0%{opacity:.35;transform:perspective(1200px) rotateY(-16deg) translateX(34px);filter:drop-shadow(-12px 0 10px rgba(0,0,0,.14))}65%{opacity:1;transform:perspective(1200px) rotateY(3deg) translateX(-3px)}100%{opacity:1;transform:perspective(1200px) rotateY(0) translateX(0);filter:none}}
+@keyframes page-flip-prev{0%{opacity:.35;transform:perspective(1200px) rotateY(16deg) translateX(-34px);filter:drop-shadow(12px 0 10px rgba(0,0,0,.14))}65%{opacity:1;transform:perspective(1200px) rotateY(-3deg) translateX(3px)}100%{opacity:1;transform:perspective(1200px) rotateY(0) translateX(0);filter:none}}
+@media (prefers-reduced-motion:reduce){#page.page-flip-next,#page.page-flip-prev{animation:none}}
 .section{display:none;padding:16px;padding-bottom:60px}.section.active{display:block}
 .countdown-card{background:var(--card);border-radius:16px;padding:20px 20px 16px;margin-bottom:16px;box-shadow:0 1px 8px rgba(0,0,0,.04)}
 .cc-label{font-size:12px;color:var(--sub);margin-bottom:2px}
@@ -59,7 +60,7 @@ body{font-family:'Noto Sans SC',-apple-system,BlinkMacSystemFont,sans-serif;back
 .day-timeline::before{content:'';position:absolute;left:5px;top:8px;bottom:8px;width:1.5px;background:var(--sep)}
 .dt-item{position:relative;margin-bottom:12px}
 .dt-dot{position:absolute;left:-15px;top:6px;width:10px;height:10px;border-radius:50%;border:2px solid var(--card);z-index:1}
-.dt-card{background:var(--card);border-radius:12px;padding:12px 14px;box-shadow:0 1px 4px rgba(0,0,0,.04);cursor:pointer}
+.dt-card{background:var(--card);border-radius:12px;padding:12px 14px;box-shadow:0 1px 4px rgba(0,0,0,.04);cursor:default}
 .dt-card:active{box-shadow:0 2px 8px rgba(0,0,0,.08)}
 .dt-time{font-size:11px;font-weight:700;color:var(--sub);letter-spacing:.03em}
 .dt-name{font-size:14px;font-weight:600;margin:2px 0}
@@ -195,17 +196,17 @@ function selectTab(idx){
 }
 
 function renderPage(idx,direction=0){
-  page.classList.remove('page-enter-next','page-enter-prev');
+  page.classList.remove('page-flip-next','page-flip-prev');
   render(idx);
   if(!direction)return;
   void page.offsetWidth;
-  page.classList.add(direction>0?'page-enter-next':'page-enter-prev');
+  page.classList.add(direction>0?'page-flip-next':'page-flip-prev');
 }
 
-let swipePointerId=null,swipeStartX=0,swipeStartY=0,swipeStartTarget=null;
-const SWIPE_THRESHOLD=50;
+let swipePointerId=null,swipeStartX=0,swipeStartY=0,swipeStartTarget=null,suppressClick=false;
+const SWIPE_THRESHOLD=44;
 function isInteractiveTarget(target){
-  return target instanceof Element && target.closest('button,a,input,textarea,select,[onclick],[contenteditable="true"]');
+  return target instanceof Element && target.closest('button,a,input,textarea,select,summary,[contenteditable="true"]');
 }
 function resetSwipe(){
   swipePointerId=null;swipeStartTarget=null;page.classList.remove('swipe-dragging');
@@ -217,16 +218,32 @@ page.addEventListener('pointerdown',e=>{
   page.classList.add('swipe-dragging');
   page.setPointerCapture?.(e.pointerId);
 });
+page.addEventListener('pointermove',e=>{
+  if(e.pointerId!==swipePointerId)return;
+  const dx=e.clientX-swipeStartX,dy=e.clientY-swipeStartY;
+  if(Math.abs(dx)>10&&Math.abs(dx)>Math.abs(dy)*1.1)e.preventDefault();
+},{passive:false});
 page.addEventListener('pointerup',e=>{
   if(e.pointerId!==swipePointerId)return;
   const dx=e.clientX-swipeStartX,dy=e.clientY-swipeStartY;
-  const isHorizontal=Math.abs(dx)>Math.abs(dy)*1.2;
+  const isHorizontal=Math.abs(dx)>Math.abs(dy)*1.1;
   const isSwipe=isHorizontal&&Math.abs(dx)>=SWIPE_THRESHOLD&&!isInteractiveTarget(swipeStartTarget);
-  if(isSwipe)selectTab(currentIdx+(dx<0?1:-1));
+  if(isSwipe){
+    suppressClick=true;
+    window.setTimeout(()=>{suppressClick=false},600);
+    selectTab(currentIdx+(dx<0?1:-1));
+  }
   resetSwipe();
 });
+page.addEventListener('click',e=>{
+  if(!suppressClick)return;
+  e.preventDefault();e.stopPropagation();suppressClick=false;
+},true);
 page.addEventListener('pointercancel',resetSwipe);
 page.addEventListener('lostpointercapture',resetSwipe);
+page.addEventListener('animationend',e=>{
+  if(e.animationName==='page-flip-next'||e.animationName==='page-flip-prev')page.classList.remove('page-flip-next','page-flip-prev');
+});
 
 function render(idx){if(idx===0)renderOverview();else if(idx<=6)renderDay(idx-1);else if(idx===7)renderTodo();else renderTips()}
 
@@ -412,7 +429,7 @@ function renderDay(idx){
   const pts=[];for(let i=0;i<locs.length;i++){pts.push({x:30+(i/(locs.length-1||1))*340,y:100+Math.sin(i*0.8)*30+Math.cos(i*1.2)*15})}
   if(pts.length>1){let d=`M${pts[0].x},${pts[0].y}`;for(let i=1;i<pts.length;i++)d+=` Q${(pts[i-1].x+pts[i].x)/2},${(pts[i-1].y+pts[i].y)/2-20} ${pts[i].x},${pts[i].y}`;h+=`<path d="${d}" fill="none" stroke="${color}" stroke-width="2.5" stroke-linecap="round"/>`;pts.forEach((p,i)=>{h+=`<circle cx="${p.x}" cy="${p.y}" r="4" fill="${color}"/><text x="${p.x}" y="${p.y-10}" text-anchor="middle" font-size="9" fill="${color}" font-family="sans-serif">${locs[i].time}</text>`})}
   h+=`</svg></div><div class="day-timeline">`;
-  locs.forEach(l=>{const badge=l.need?'<span class="dt-badge need">⚠️需预约</span>':'';const gmapUrl=`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(l.gmap||l.name+' Bangkok')}`;h+=`<div class="dt-item"><div class="dt-dot" style="background:${color}"></div><div class="dt-card" onclick="window.open('${gmapUrl}','_blank')"><div class="dt-time">${l.time}</div><div class="dt-name">${l.name}${badge}</div><div class="dt-desc">${l.desc}</div>${l.budget?`<span class="dt-budget">${l.budget}</span>`:''}<div class="dt-gmap">🗺️ Google Map 导航</div></div></div>`});
+  locs.forEach(l=>{const badge=l.need?'<span class="dt-badge need">⚠️需预约</span>':'';const gmapUrl=`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(l.gmap||l.name+' Bangkok')}`;h+=`<div class="dt-item"><div class="dt-dot" style="background:${color}"></div><div class="dt-card"><div class="dt-time">${l.time}</div><div class="dt-name">${l.name}${badge}</div><div class="dt-desc">${l.desc}</div>${l.budget?`<span class="dt-budget">${l.budget}</span>`:''}<a class="dt-gmap" href="${gmapUrl}" target="_blank" rel="noopener">🗺️ Google Map 导航</a></div></div>`});
   h+=`</div>`;page.innerHTML=h;
 }
 function toggleRoute(idx){const el=document.getElementById('route-'+idx);if(el)el.classList.toggle('show')}
