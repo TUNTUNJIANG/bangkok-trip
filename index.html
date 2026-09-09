@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-page-node-id="2MmNs6azw9XTzN2y4E3mYR">
+<head data-page-node-id="4H64FbswHv94KNaS0UKadU">
+<meta charset="UTF-8" data-page-node-id="9MG5AjJovyGWBG3sJFzPDZ">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" data-page-node-id="Mv2oVjT3MoZYXLinJy5vmT">
+<title>曼谷+芭提雅 6天5晚</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" data-page-node-id="RDqKm0joxBEkSbA6L97UEB">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet" data-page-node-id="3GSthmAOOfDCmTETRK8uVj">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+:root{--bg:#f6f6f0;--card:#fff;--text:#1a1a1a;--sub:#888;--sep:#e8e6df;--red:#e74c3c;--orange:#f0932b;--blue:#3498db;--purple:#8e6de6;--green:#27ae60}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Sans SC',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;max-width:480px;margin:0 auto;overflow-x:hidden}
+.tab-bar{position:sticky;top:0;z-index:100;background:var(--card);display:flex;border-bottom:1px solid var(--sep);padding:0 4px;overflow-x:auto;scrollbar-width:none}
+.tab-bar::-webkit-scrollbar{display:none}
+.tb{flex-shrink:0;padding:10px 14px;font-size:13px;font-weight:500;color:var(--sub);background:none;border:none;cursor:pointer;border-bottom:2px solid transparent;transition:all .2s}
+.tb.active{color:var(--text);font-weight:700;border-bottom-color:var(--text)}
+.section{display:none;padding:16px;padding-bottom:60px}.section.active{display:block}
+.countdown-card{background:var(--card);border-radius:16px;padding:20px 20px 16px;margin-bottom:16px;box-shadow:0 1px 8px rgba(0,0,0,.04)}
+.cc-label{font-size:12px;color:var(--sub);margin-bottom:2px}
+.cc-event{font-size:16px;font-weight:700;margin-bottom:10px}
+.cc-time{display:flex;align-items:baseline;gap:2px}
+.cc-num{font-size:32px;font-weight:900;line-height:1}
+.cc-unit{font-size:12px;color:var(--sub);font-weight:400;margin-left:2px}
+.cc-sep{font-size:18px;color:var(--sub);margin:0 4px;font-weight:300}
+.cc-sub{font-size:12px;color:var(--sub);margin-top:8px}
+.flight-badges{display:flex;gap:8px;margin-bottom:16px;overflow-x:auto;scrollbar-width:none}
+.flight-badges::-webkit-scrollbar{display:none}
+.fb{flex-shrink:0;background:var(--card);border-radius:12px;padding:12px 14px;box-shadow:0 1px 6px rgba(0,0,0,.04);min-width:170px}
+.fb .fb-route{font-size:15px;font-weight:700}
+.fb .fb-meta{font-size:12px;color:var(--sub);margin-top:2px}
+.fb .fb-cd{font-size:11px;color:var(--orange);font-weight:600;margin-top:6px}
+.map-card{background:var(--card);border-radius:16px;padding:16px;margin-bottom:16px;box-shadow:0 1px 8px rgba(0,0,0,.04)}
+.map-card h3{font-size:15px;font-weight:700;margin-bottom:12px}
+.map-wrap{width:100%;overflow:hidden;border-radius:12px;background:#f8f8f4}
+.map-wrap svg{width:100%;height:auto;display:block}
+.booking-card{background:var(--card);border-radius:16px;padding:16px;margin-bottom:16px;box-shadow:0 1px 8px rgba(0,0,0,.04)}
+.booking-card h3{font-size:15px;font-weight:700;margin-bottom:12px}
+.bk-item{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--sep)}
+.bk-item:last-child{border-bottom:none}
+.bk-icon{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.bk-icon.flight{background:#e8f4fd}
+.bk-icon.hotel{background:#fef3cd}
+.bk-icon.bus{background:#e8e6df}
+.bk-icon.van{background:#d4edda}
+.bk-detail{flex:1;min-width:0}
+.bk-detail .bk-title{font-size:14px;font-weight:600}
+.bk-detail .bk-meta{font-size:12px;color:var(--sub);margin-top:2px;line-height:1.5}
+.day-header{font-size:13px;color:var(--sub);margin-bottom:12px;display:flex;justify-content:space-between;align-items:center}
+.day-header .day-route-btn{font-size:11px;color:var(--blue);background:none;border:none;cursor:pointer}
+.day-timeline{position:relative;padding-left:18px}
+.day-timeline::before{content:'';position:absolute;left:5px;top:8px;bottom:8px;width:1.5px;background:var(--sep)}
+.dt-item{position:relative;margin-bottom:12px}
+.dt-dot{position:absolute;left:-15px;top:6px;width:10px;height:10px;border-radius:50%;border:2px solid var(--card);z-index:1}
+.dt-card{background:var(--card);border-radius:12px;padding:12px 14px;box-shadow:0 1px 4px rgba(0,0,0,.04);cursor:pointer}
+.dt-card:active{box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.dt-time{font-size:11px;font-weight:700;color:var(--sub);letter-spacing:.03em}
+.dt-name{font-size:14px;font-weight:600;margin:2px 0}
+.dt-desc{font-size:12px;color:var(--sub);line-height:1.45}
+.dt-budget{display:inline-block;margin-top:4px;padding:2px 8px;background:#f3f4f6;border-radius:6px;font-size:11px;color:var(--sub);font-weight:600}
+.dt-badge{display:inline-block;font-size:10px;padding:1px 6px;border-radius:4px;font-weight:700;margin-left:4px}
+.dt-badge.need{background:rgba(231,76,60,.1);color:var(--red)}
+.dt-gmap{display:inline-flex;align-items:center;gap:3px;margin-top:6px;font-size:12px;color:var(--blue);text-decoration:none;padding:4px 10px;background:#e8f4fd;border-radius:8px;font-weight:600}
+.day-route-overlay{background:var(--card);border-radius:12px;padding:14px;margin-bottom:12px;box-shadow:0 1px 6px rgba(0,0,0,.04);display:none}
+.day-route-overlay.show{display:block}
+.day-route-overlay svg{width:100%;height:auto}
+.todo-card{background:var(--card);border-radius:16px;padding:16px;margin-bottom:16px;box-shadow:0 1px 8px rgba(0,0,0,.04)}
+.todo-card h3{font-size:15px;font-weight:700;margin-bottom:12px}
+.todo-item{display:flex;gap:10px;padding:8px 0;border-bottom:1px solid var(--sep);font-size:13px;line-height:1.5}
+.todo-item:last-child{border-bottom:none}
+.todo-item .todo-num{color:var(--sub);font-weight:600;min-width:20px}
+.tips-card{background:var(--card);border-radius:16px;padding:16px;margin-bottom:16px;box-shadow:0 1px 8px rgba(0,0,0,.04)}
+.tips-card h3{font-size:15px;font-weight:700;margin-bottom:10px}
+.tip-block{margin-bottom:12px}
+.tip-block h4{font-size:13px;font-weight:700;margin-bottom:4px}
+.tip-block p,.tip-block li{font-size:12px;color:#444;line-height:1.6}
+.tip-block ul{padding-left:16px}
+.footer{text-align:center;padding:20px;font-size:11px;color:var(--sub)}
+</style>
+</head>
+<body data-page-node-id="ARjrGrGzRiTHhBefdKLHAy">
+
+<div class="tab-bar" id="tabBar" data-page-node-id="T4WMfNMI9mO7ah6oo3417d"></div>
+<div id="page" data-page-node-id="Egg4nq2AFDkgVC0AgaOWMo"></div>
+
+<script>
+const TZ_TH='+07:00',TZ_CN='+08:00';
+function parseTime(d,t){return new Date(d+'T'+t+TZ_TH)}
+function parseTimeCN(d,t){return new Date(d+'T'+t+TZ_CN)}
+const NOW=()=>new Date();
+
+const TRIP_DATES=['2026-09-29','2026-09-30','2026-10-01','2026-10-02','2026-10-03','2026-10-04'];
+const FLIGHT_OUT={date:'2026-09-29',time:'09:40',tz:TZ_CN};
+const FLIGHT_BACK={date:'2026-10-04',time:'14:00',tz:TZ_TH};
+
+const DAY_COLORS=['#e74c3c','#f0932b','#3498db','#8e6de6','#27ae60','#e74c3c'];
+const DAY_LABELS=['D1','D2','D3','D4','D5','D6'];
+const DAY_TITLES=['抵达曼谷·湄南河落日+朱拉隆功夜市','早市·水门寺·大皇宫→芭提雅','格兰岛一日游','芭提雅 citywalk','芭提雅→曼谷·ICONSIAM','返程·船面+伴手礼'];
+const DAY_DATES=['9月29日 周一','9月30日 周二','10月1日 周三','10月2日 周四','10月3日 周五','10月4日 周六'];
+
+const LOCATIONS=[
+[
+  {time:'09:40',name:'宁波起飞 9C7431',desc:'春秋航空 宁波→曼谷 4h20m',type:'transport',need:false,gmap:'宁波栎社国际机场'},
+  {time:'13:00',name:'素万那普机场 BKK',desc:'入境取行李, B1层搭ARL',type:'transport',need:false,gmap:'Suvarnabhumi+Airport+Bangkok'},
+  {time:'13:45',name:'ARL 机场快线→Phaya Thai',desc:'B1层上车, 26分钟直达, 45 THB/人',budget:'45 THB',type:'transport',need:false,gmap:'Airport+Rail+Link+Phaya+Thai'},
+  {time:'14:30',name:'特鲁暹罗帕亚泰路酒店 Check-in',desc:'Check-in 休整放行李',type:'hotel',need:false,gmap:'True+Siam+Phayathai+Hotel+Bangkok'},
+  {time:'16:00',name:'Phra Arthit 码头',desc:'Grab前往考山路附近',budget:'~150 THB',type:'transport',need:false,gmap:'Phra+Arthit+Pier+Bangkok'},
+  {time:'17:00',name:'蓝旗船 日落巡航',desc:'Phra Arthit→Sathorn 二层甲板看郑王庙',budget:'40 THB',type:'spot',need:true,gmap:'Chao+Phraya+Tourist+Boat'},
+  {time:'18:30',name:'朱拉隆功夜市',desc:'MAMA面+牛奶小子+烤面包+海鲜',budget:'300-500 THB',type:'food',need:false,gmap:'Banthat+Thong+Road+Bangkok'},
+  {time:'21:30',name:'返回酒店',desc:'BTS回Phaya Thai',budget:'~40 THB',type:'transport',need:false,gmap:'BTS+Phaya+Thai+Station'},
+],
+[
+  {time:'06:30',name:'出发去 Trok Mor 早市',desc:'Grab前往, 约20分钟',budget:'~150 THB',type:'transport',need:false,gmap:'Trok+Mor+Morning+Market+Bangkok'},
+  {time:'07:00',name:'Trok Mor Morning Market',desc:'70年老早市! 本地人最爱',budget:'~100 THB',type:'food',need:false,gmap:'Trok+Mor+Morning+Market'},
+  {time:'08:00',name:'水门寺大佛',desc:'69米金佛+绿色琉璃佛塔',budget:'免费',type:'spot',need:false,gmap:'Wat+Paknam+Phasi+Charoen+Bangkok'},
+  {time:'09:00',name:'大皇宫 Grand Palace',desc:'曼谷头号地标',budget:'500 THB',type:'spot',need:false,gmap:'Grand+Palace+Bangkok'},
+  {time:'10:00',name:'回酒店退房',desc:'Grab回Phaya Thai取行李',budget:'~200 THB',type:'transport',need:false,gmap:'BTS+Phaya+Thai'},
+  {time:'10:30',name:'EmSphere 🛍️',desc:'潮流商场 B1寄存行李→逛街吃饭',budget:'150 THB寄存',type:'spot',need:false,gmap:'EmSphere+Bangkok'},
+  {time:'12:30',name:'Mae Varee 芒果糯米饭',desc:'米其林推荐 三色糯米 椰浆现熬',budget:'150 THB',type:'food',need:false,gmap:'Mae+Varee+Mango+Sticky+Rice+Bangkok'},
+  {time:'13:00',name:'Ekkamai 汽车东站→芭提雅',desc:'大巴约2.5小时, 131 THB',budget:'131 THB',type:'transport',need:false,gmap:'Eastern+Bus+Terminal+Ekkamai'},
+  {time:'16:30',name:'芭提雅民宿 Check-in',desc:'Nong Prue区 7人入住',type:'hotel',need:false,gmap:'Nong+Prue+Bang+Lamung+Chon+Buri'},
+  {time:'17:30',name:'The Sky Gallery 悬崖日落',desc:'悬崖海景晚餐! 落日染红泰国湾',budget:'300-500 THB',type:'food',need:true,gmap:'The+Sky+Gallery+Pattaya'},
+  {time:'19:30',name:'中天夜市 见朋友',desc:'Jomtien Night Market 逛吃',budget:'~200 THB',type:'food',need:false,gmap:'Jomtien+Night+Market+Pattaya'},
+],
+[
+  {time:'07:00',name:'Bali Hai 码头',desc:'Grab→大船→格兰岛',budget:'30 THB',type:'transport',need:false,gmap:'Bali+Hai+Pier+Pattaya'},
+  {time:'08:30',name:'Tawaen Beach 达汶海滩',desc:'最热闹海滩! 拖曳伞/摩托艇',budget:'拖曳伞600-800',type:'spot',need:false,gmap:'Tawaen+Beach+Koh+Larn'},
+  {time:'10:00',name:'Tien Beach 浮潜',desc:'水质最清! 浮潜看热带鱼',type:'spot',need:false,gmap:'Tien+Beach+Koh+Larn'},
+  {time:'12:00',name:'海边海鲜午餐',desc:'海滩旁海鲜餐厅',budget:'~300 THB',type:'food',need:false,gmap:'seafood+Koh+Larn'},
+  {time:'13:00',name:'Samae Beach 萨美海滩',desc:'最安静海滩 粉色沙滩椅放松',type:'spot',need:false,gmap:'Samae+Beach+Koh+Larn'},
+  {time:'14:30',name:'Nual Beach / 观景台',desc:'猴子海滩+风车全景',type:'spot',need:false,gmap:'Nual+Beach+Koh+Larn'},
+  {time:'16:00',name:'返回芭提雅',desc:'大船回Bali Hai 末班约17:00!',budget:'30 THB',type:'transport',need:false,gmap:'Bali+Hai+Pier+Pattaya'},
+  {time:'18:00',name:'Jomtien Talay Pao 海鲜自助',desc:'烤海鲜吃到饱',budget:'~400 THB',type:'food',need:false,gmap:'Jomtien+Talay+Pao+Pattaya'},
+],
+[
+  {time:'07:30',name:'民宿早餐 / 7-11简餐',desc:'泰式简餐',budget:'~80 THB',type:'food',need:false,gmap:'breakfast+Pattaya'},
+  {time:'08:30',name:'四方水上市场',desc:'杜拉拉升职记取景地',budget:'200 THB',type:'spot',need:false,gmap:'Pattaya+Floating+Market'},
+  {time:'11:00',name:'真理寺',desc:'世界最大全木雕建筑!',budget:'500 THB',type:'spot',need:false,gmap:'Sanctuary+of+Truth+Pattaya'},
+  {time:'13:00',name:'Terminal 21 Pattaya',desc:'每层一个世界城市! Pier 21美食超便宜',budget:'30-80 THB',type:'spot',need:false,gmap:'Terminal+21+Pattaya'},
+  {time:'16:00',name:'泰式按摩',desc:"Let's Relax 正宗泰式按摩",budget:'~600 THB',type:'spot',need:true,gmap:'Thai+massage+Pattaya'},
+  {time:'17:30',name:'帕山观景台日落',desc:'芭提雅最佳日落点',budget:'免费',type:'spot',need:false,gmap:'Pattaya+Viewpoint+Khao+Phra+Tamnak'},
+  {time:'19:00',name:'Walking Street 晚餐',desc:'最热闹夜生活区 海鲜+Live House',budget:'~400 THB',type:'food',need:false,gmap:'Walking+Street+Pattaya'},
+],
+[
+  {time:'08:00',name:'中天海滩晨间散步',desc:'最后感受芭提雅清晨的海',type:'spot',need:false,gmap:'Jomtien+Beach+Pattaya'},
+  {time:'10:30',name:'包车回曼谷',desc:'7座Van→Phaya Thai 约2.5h',budget:'~2500 THB/辆',type:'transport',need:true,gmap:'BTS+Phaya+Thai'},
+  {time:'13:00',name:'曼谷王权铂尔曼酒店 Check-in',desc:'Pullman Bangkok King Power',type:'hotel',need:false,gmap:'Pullman+Bangkok+King+Power+Hotel'},
+  {time:'13:30',name:'Phaya Thai 附近午餐',desc:'街边船面/海南鸡饭',budget:'~150 THB',type:'food',need:false,gmap:'restaurant+near+Phaya+Thai+Bangkok'},
+  {time:'16:30',name:'ICONSIAM 罗天地',desc:'G层SookSiam室内水上市场 河畔灯光秀',type:'spot',need:false,gmap:'ICONSIAM+Bangkok'},
+  {time:'20:30',name:'返回酒店',desc:'接驳船+BTS回Phaya Thai',budget:'~47 THB',type:'transport',need:false,gmap:'BTS+Phaya+Thai+Station'},
+],
+[
+  {time:'07:30',name:'退房+寄存行李',desc:'行李寄存前台',type:'hotel',need:false,gmap:'BTS+Phaya+Thai'},
+  {time:'07:45',name:'胜利纪念碑船面',desc:'每碗15-20 THB 7个人比谁吃得多',budget:'~100 THB',type:'food',need:false,gmap:'boat+noodle+alley+victory+monument+bangkok'},
+  {time:'09:00',name:'Siam Paragon 伴手礼',desc:'Gourmet Market + PAÑPURI',budget:'~1500 THB',type:'spot',need:false,gmap:'Siam+Paragon+Bangkok'},
+  {time:'11:00',name:'取行李→机场',desc:'Grab→机场 ~400 THB',budget:'~400 THB',type:'transport',need:false,gmap:'Suvarnabhumi+Airport+Bangkok'},
+  {time:'11:45',name:'素万那普值机',desc:'值机/托运/安检/过关',type:'transport',need:false,gmap:'Suvarnabhumi+Airport+departure'},
+  {time:'12:45',name:'King Power 免税店',desc:'最后扫货 登机前',type:'spot',need:false,gmap:'King+Power+Suvarnabhumi+Airport'},
+  {time:'14:00',name:'飞回宁波 9C7432',desc:'曼谷→宁波 5h 19:00到家',type:'transport',need:false,gmap:'Spring+Airlines+9C7432'},
+],
+];
+
+// Booking icons (emoji)
+const SVG_ICONS={
+  flight:'✈️',
+  hotel:'🏨',
+  bus:'🚌',
+  van:'🚐',
+};
+
+const TABS=['总览','D1','D2','D3','D4','D5','D6','待办','贴士'];
+const tabBar=document.getElementById('tabBar');
+TABS.forEach((t,i)=>{const b=document.createElement('button');b.className='tb'+(i===0?' active':'');b.textContent=t;b.dataset.idx=i;tabBar.appendChild(b)});
+tabBar.addEventListener('click',e=>{const b=e.target.closest('.tb');if(!b)return;tabBar.querySelectorAll('.tb').forEach(x=>x.classList.remove('active'));b.classList.add('active');render(+b.dataset.idx)});
+
+const page=document.getElementById('page');
+function render(idx){if(idx===0)renderOverview();else if(idx<=6)renderDay(idx-1);else if(idx===7)renderTodo();else renderTips()}
+
+function renderOverview(){
+  const outT=parseTimeCN(FLIGHT_OUT.date,FLIGHT_OUT.time),now=NOW(),diff=outT-now;
+  const d=Math.max(0,Math.floor(diff/864e5)),h2=Math.floor((diff%864e5)/36e5),m=Math.floor((diff%36e5)/6e4),s=Math.floor((diff%6e4)/1e3);
+  const nextEvt=findNextEvent();
+  let h=`<div class="countdown-card">
+    <div class="cc-label">${nextEvt?nextEvt.label:'旅程进行中'}</div>
+    <div class="cc-event">${nextEvt?nextEvt.name:''}</div>
+    <div class="cc-time">
+      <span class="cc-num" id="cdDays">${d}</span><span class="cc-unit">天</span>
+      <span class="cc-sep">:</span><span class="cc-num" id="cdHours">${h2}</span><span class="cc-unit">时</span>
+      <span class="cc-sep">:</span><span class="cc-num" id="cdMins">${m}</span><span class="cc-unit">分</span>
+      <span class="cc-sep">:</span><span class="cc-num" id="cdSecs">${s}</span><span class="cc-unit">秒</span>
+    </div>
+    <div class="cc-sub">出发时间: 2026/9/29 09:40 (北京时间)</div>
+  </div>`;
+  const dOut=Math.ceil((outT-now)/864e5),backT=parseTime(FLIGHT_BACK.date,FLIGHT_BACK.time),dBack=Math.ceil((backT-now)/864e5);
+  h+=`<div class="flight-badges">
+    <div class="fb"><div class="fb-route">宁波→曼谷</div><div class="fb-meta">9/29 周一 · 春秋 9C7431<br>09:40—13:00 (4h20m)</div><div class="fb-cd">${dOut>0?dOut+' 天后出发':'今天出发'}</div></div>
+    <div class="fb"><div class="fb-route">曼谷→宁波</div><div class="fb-meta">10/4 周六 · 春秋 9C7432<br>14:00—19:00 (5h)</div><div class="fb-cd">${dBack>0?dBack+' 天后返程':'今天返程'}</div></div>
+  </div>`;
+  h+=buildSvgMap();
+  // Build booking items sorted by category using SVG icons
+  const bkItems=[
+    {icon:'flight',title:'春秋航空 9C7431',meta:'9/29 09:40 宁波栎社 → 13:00 曼谷素万那普<br>4h20m 经停—'},
+    {icon:'flight',title:'春秋航空 9C7432',meta:'10/4 14:00 曼谷素万那普 → 19:00 宁波栎社<br>5h'},
+    {icon:'hotel',title:'特鲁暹罗帕亚泰路酒店',meta:'9/29 入住 45 Soi Si Ayutthaya 12<br>近BTS Phaya Thai站步行5分钟'},
+    {icon:'hotel',title:'曼谷王权铂尔曼酒店',meta:'10/3 入住 8, 2 Rang Nam Alley<br>近胜利纪念碑 楼下King Power免税店'},
+    {icon:'bus',title:'Ekkamai→芭提雅 大巴',meta:'9/30 约13:00发车 约16:00抵达<br>131 THB/人'},
+    {icon:'van',title:'芭提雅→曼谷 包车 (7座)',meta:'10/3 约10:30出发 约2.5h<br>~2500 THB'},
+  ];
+  let bkHtml='';bkItems.forEach(it=>{bkHtml+=`<div class="bk-item"><div class="bk-icon ${it.icon}">${SVG_ICONS[it.icon]}</div><div class="bk-detail"><div class="bk-title">${it.title}</div><div class="bk-meta">${it.meta}</div></div></div>`});
+  h+=`<div class="booking-card"><h3>📋 已确认预定</h3>${bkHtml}</div>`;
+  h+='<div class="tips-card"><h3>📅 6天概览</h3>';
+  for(let i=0;i<6;i++){h+=`<div style="display:flex;gap:10px;align-items:center;padding:8px 0;border-bottom:1px solid var(--sep)"><span style="font-size:13px;font-weight:700;color:${DAY_COLORS[i]};min-width:32px">${DAY_LABELS[i]}</span><span style="font-size:13px;flex:1">${DAY_TITLES[i]}</span><span style="font-size:11px;color:var(--sub);white-space:nowrap">${DAY_DATES[i]}</span></div>`}
+  h+='</div>';
+  page.innerHTML=h;startCountdown();
+}
+
+function findNextEvent(){
+  const events=[],now=NOW();
+  for(let i=0;i<6;i++){const d=TRIP_DATES[i];for(const l of LOCATIONS[i]){if(!l.need)continue;const t=parseTime(d,l.time);if(t>now)events.push({t,label:`${DAY_LABELS[i]} · ${l.time}`,name:l.name})}}
+  const outT=parseTimeCN(FLIGHT_OUT.date,FLIGHT_OUT.time);if(outT>now)events.push({t:outT,label:'出发',name:'宁波飞曼谷 9C7431'});
+  const backT=parseTime(FLIGHT_BACK.date,FLIGHT_BACK.time);if(backT>now)events.push({t:backT,label:'返程',name:'曼谷飞宁波 9C7432'});
+  events.sort((a,b)=>a.t-b.t);return events.length?events[0]:null;
+}
+
+let cdInterval;
+function startCountdown(){if(cdInterval)clearInterval(cdInterval);function tick(){const outT=parseTimeCN(FLIGHT_OUT.date,FLIGHT_OUT.time),diff=outT-NOW();const el=(id)=>document.getElementById(id);if(!el('cdDays'))return;el('cdDays').textContent=Math.max(0,Math.floor(diff/864e5));el('cdHours').textContent=Math.floor((diff%864e5)/36e5);el('cdMins').textContent=Math.floor((diff%36e5)/6e4);el('cdSecs').textContent=Math.floor((diff%6e4)/1e3)}tick();cdInterval=setInterval(tick,1000)}
+
+function buildSvgMap(){
+  return `<div class="map-card"><h3>🗺️ 行程总览</h3>
+<div class="map-wrap"><svg viewBox="0 0 400 360" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<filter id="glow"><feGaussianBlur stdDeviation="2" result="g"/><feMerge><feMergeNode in="g"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+<filter id="sketch"><feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="3" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="1.5"/></filter>
+<!-- 纸张纹理 -->
+<filter id="paper"><feTurbulence type="fractalNoise" baseFrequency="0.015" numOctaves="5" result="noise"/><feColorMatrix type="matrix" values="0.92 0 0 0 0.05  0 0.90 0 0 0.03  0 0 0.88 0 0.04  0 0 0 0.08 0" in="noise" result="colored"/><feBlend in="SourceGraphic" in2="colored" mode="multiply"/></filter>
+<pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+<path d="M40,0 L0,0 L0,40" fill="none" stroke="#d8d4c8" stroke-width="0.3" opacity="0.4"/>
+</pattern>
+<pattern id="crosshatch" width="20" height="20" patternUnits="userSpaceOnUse">
+<path d="M0,20 L20,0 M0,0 L20,20" fill="none" stroke="#d0ccc0" stroke-width="0.15" opacity="0.2"/>
+</pattern>
+<radialGradient id="vignette" cx="50%" cy="50%" r="70%">
+<stop offset="0%" stop-color="#fff" stop-opacity="0"/>
+<stop offset="100%" stop-color="#c8c0b0" stop-opacity="0.15"/>
+</radialGradient>
+</defs>
+
+<!-- 纸张底色 -->
+<rect width="400" height="360" fill="#f7f4ec" filter="url(#paper)"/>
+<!-- 经纬网格 -->
+<rect width="400" height="360" fill="url(#grid)"/>
+<!-- 暗角 -->
+<rect width="400" height="360" fill="url(#vignette)"/>
+
+<!-- 罗盘 -->
+<g transform="translate(30,50)" opacity="0.3">
+<circle cx="0" cy="0" r="20" fill="none" stroke="#a09880" stroke-width="0.8"/>
+<circle cx="0" cy="0" r="16" fill="none" stroke="#a09880" stroke-width="0.4"/>
+<path d="M0,-18 L3,-4 L0,0 L-3,-4Z" fill="#c8a882"/>
+<path d="M0,18 L3,4 L0,0 L-3,4Z" fill="#a09880"/>
+<path d="M18,0 L4,3 L0,0 L4,-3Z" fill="#a09880"/>
+<path d="M-18,0 L-4,3 L0,0 L-4,-3Z" fill="#a09880"/>
+<text x="-3" y="-22" font-size="7" fill="#807860" font-family="serif">N</text>
+</g>
+
+<!-- 等高线/地形阴影 -->
+<path d="M60,80 Q100,75 140,90 Q180,105 220,95 Q260,85 300,100 Q340,115 380,90" fill="none" stroke="#c8c0a8" stroke-width="0.4" opacity="0.3"/>
+<path d="M50,120 Q100,110 150,125 Q200,140 250,130 Q300,120 350,135 Q380,145 400,120" fill="none" stroke="#c8c0a8" stroke-width="0.4" opacity="0.3"/>
+<path d="M40,160 Q90,155 140,165 Q190,175 240,168 Q290,160 340,170 Q370,178 400,160" fill="none" stroke="#c8c0a8" stroke-width="0.4" opacity="0.3"/>
+
+<!-- 经纬度标注 -->
+<text x="5" y="30" font-size="6" fill="#b8b0a0" font-family="monospace">20°N</text>
+<text x="5" y="110" font-size="6" fill="#b8b0a0" font-family="monospace">15°N</text>
+<text x="5" y="190" font-size="6" fill="#b8b0a0" font-family="monospace">10°N</text>
+<text x="340" y="28" font-size="6" fill="#b8b0a0" font-family="monospace">101°E</text>
+<text x="340" y="100" font-size="6" fill="#b8b0a0" font-family="monospace">102°E</text>
+<text x="340" y="270" font-size="6" fill="#b8b0a0" font-family="monospace">103°E</text>
+
+<!-- 手绘泰国轮廓（主体） -->
+<path d="M140,10 Q155,20 165,15 Q180,25 190,35 Q200,45 215,55 Q225,65 230,80 Q235,95 240,110 Q245,125 250,140 Q255,155 260,170 Q265,185 270,200 Q275,215 280,230 Q285,245 280,260 Q275,275 270,290 Q265,305 255,320 Q245,335 235,340 Q225,345 220,330 Q215,315 210,300 Q205,285 200,270 Q195,255 190,240 Q185,225 180,210 Q175,195 170,180 Q165,165 160,150 Q155,135 150,120 Q145,105 140,90 Q135,75 130,60 Q125,45 130,30 Q135,20 140,10Z" fill="none" stroke="#b8b098" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" filter="url(#sketch)" opacity=".65"/>
+<!-- 泰国境内填充（淡绿阴影） -->
+<path d="M140,10 Q155,20 165,15 Q180,25 190,35 Q200,45 215,55 Q225,65 230,80 Q235,95 240,110 Q245,125 250,140 Q255,155 260,170 Q265,185 270,200 Q275,215 280,230 Q285,245 280,260 Q275,275 270,290 Q265,305 255,320 Q245,335 235,340 Q225,345 220,330 Q215,315 210,300 Q205,285 200,270 Q195,255 190,240 Q185,225 180,210 Q175,195 170,180 Q165,165 160,150 Q155,135 150,120 Q145,105 140,90 Q135,75 130,60 Q125,45 130,30 Q135,20 140,10Z" fill="#d8e0c8" opacity=".12"/>
+<!-- 手绘柬埔寨轮廓 -->
+<path d="M280,120 Q290,110 300,115 Q310,120 320,130 Q330,140 335,155 Q340,170 340,185 Q340,200 335,215 Q330,230 320,240 Q310,250 300,255 Q290,260 280,255 Q270,250 265,240 Q260,230 258,215 Q256,200 255,185 Q254,170 255,155 Q256,140 260,125 Q265,115 280,120Z" fill="none" stroke="#c8c4b8" stroke-width="1" stroke-dasharray="4,3" opacity=".35" filter="url(#sketch)"/>
+<!-- 缅甸轮廓 -->
+<path d="M140,10 Q130,25 125,40 Q120,55 115,70 Q110,85 105,100 Q100,115 95,130 Q90,145 85,160 Q80,175 82,190 Q84,200 90,210 Q95,220 100,230 Q105,240 108,255 Q110,270 115,285 Q120,300 130,310 Q135,315 140,310 Q145,300 148,285 Q150,270 155,255 Q160,240 165,225 Q170,210 175,195 Q180,180 185,165 Q190,150 195,135 Q200,120 205,105 Q210,90 215,75 Q220,60 225,45 Q230,35 220,25 Q210,18 200,12 Q190,6 175,8 Q160,10 150,10Z" fill="none" stroke="#c8c4b8" stroke-width="1" stroke-dasharray="3,4" opacity=".25" filter="url(#sketch)"/>
+
+<!-- 河流 -->
+<path d="M170,30 Q175,60 168,90 Q162,120 165,150 Q168,180 163,210 Q158,240 150,270 Q142,300 130,330" fill="none" stroke="#a0c4d8" stroke-width="1.2" stroke-linecap="round" opacity=".4" stroke-dasharray="6,4"/>
+<text x="128" y="285" font-size="8" fill="#90a8c0" font-family="serif" font-style="italic" transform="rotate(-72,128,285)">湄南河</text>
+<!-- 泰国湾 -->
+<path d="M240,260 Q260,280 280,300 Q300,320 320,335 Q340,350 360,345 Q380,340 400,330 L400,360 L240,360Z" fill="#e0ecf4" opacity=".25"/>
+<path d="M260,290 Q270,295 280,290 Q290,285 300,290 Q310,295 320,290" fill="none" stroke="#a8c8e0" stroke-width="0.6" opacity=".3"/>
+<path d="M275,310 Q288,315 300,310 Q312,305 325,310" fill="none" stroke="#a8c8e0" stroke-width="0.6" opacity=".25"/>
+<path d="M290,330 Q300,334 310,330 Q320,326 330,330" fill="none" stroke="#a8c8e0" stroke-width="0.5" opacity=".2"/>
+<text x="315" y="315" font-size="11" fill="#90a8c0" font-family="serif" font-style="italic">泰国湾</text>
+<!-- 安达曼海 -->
+<path d="M0,260 Q20,280 40,300 Q60,320 80,340 L80,360 L0,360Z" fill="#e0ecf4" opacity=".15"/>
+<text x="12" y="320" font-size="8" fill="#90a8c0" font-family="serif" font-style="italic" transform="rotate(-30,12,320)">安达曼海</text>
+
+<!-- 主要城市标注 -->
+<circle cx="168" cy="138" r="3" fill="#b8b098" opacity=".5"/>
+<text x="160" y="148" font-size="10" fill="#807860" font-family="serif">清迈</text>
+<circle cx="165" cy="218" r="2.5" fill="#b8b098" opacity=".35"/>
+<text x="148" y="222" font-size="9" fill="#a09880" font-family="serif">清莱</text>
+<text x="290" y="140" font-size="9" fill="#a09880" font-family="serif">柬埔寨</text>
+
+<!-- 北回归线 -->
+<path d="M130,220 L340,220" fill="none" stroke="#c8c0a8" stroke-width="0.5" stroke-dasharray="3,6" opacity=".3"/>
+<text x="290" y="218" font-size="7" fill="#b8b0a0" font-family="monospace">北回归线 23.5°N</text>
+
+<!-- 曼谷区域 -->
+<circle cx="160" cy="180" r="60" fill="#d0dab8" stroke="#b0c098" stroke-width="1" stroke-dasharray="4,3" opacity=".5"/>
+<text x="145" y="155" font-size="13" fill="#506830" font-family="serif" font-weight="600">曼谷</text>
+<!-- 芭提雅区域 -->
+<circle cx="340" cy="270" r="40" fill="#d0dab8" stroke="#b0c098" stroke-width="1" stroke-dasharray="4,3" opacity=".5"/>
+<text x="315" y="255" font-size="13" fill="#506830" font-family="serif" font-weight="600">芭提雅</text>
+
+<!-- 路线 -->
+<rect x="145" y="175" width="30" height="16" rx="4" fill="#fef3cd" stroke="#f0932b" stroke-width="1"/>
+<text x="160" y="187" text-anchor="middle" font-size="9" fill="#b8860b" font-family="sans-serif">D1酒店</text>
+<rect x="325" y="265" width="30" height="16" rx="4" fill="#fef3cd" stroke="#f0932b" stroke-width="1"/>
+<text x="340" y="277" text-anchor="middle" font-size="9" fill="#b8860b" font-family="sans-serif">民宿</text>
+<rect x="145" y="210" width="30" height="16" rx="4" fill="#fef3cd" stroke="#f0932b" stroke-width="1"/>
+<text x="160" y="222" text-anchor="middle" font-size="9" fill="#b8860b" font-family="sans-serif">D5酒店</text>
+<path d="M130,190 Q145,170 175,165 Q195,160 185,180" fill="none" stroke="#e74c3c" stroke-width="2" stroke-linecap="round"/>
+<circle cx="130" cy="190" r="4" fill="#e74c3c"/><circle cx="185" cy="180" r="3" fill="#e74c3c"/>
+<path d="M170,195 Q230,230 300,250 Q320,260 340,275" fill="none" stroke="#f0932b" stroke-width="2" stroke-linecap="round" stroke-dasharray="5,3"/>
+<circle cx="170" cy="195" r="3" fill="#f0932b"/><circle cx="340" cy="275" r="4" fill="#f0932b"/>
+<path d="M340,275 Q320,310 300,320 Q290,325 310,315 Q330,305 340,295 Q345,290 340,280" fill="none" stroke="#3498db" stroke-width="1.5" stroke-linecap="round"/>
+<path d="M335,270 Q320,250 345,240 Q360,245 350,260 Q340,275 345,285 Q355,290 340,275" fill="none" stroke="#8e6de6" stroke-width="1.5" stroke-linecap="round"/>
+<path d="M340,275 Q300,250 260,220 Q220,195 180,185" fill="none" stroke="#27ae60" stroke-width="2" stroke-linecap="round" stroke-dasharray="5,3"/>
+<path d="M30,40 Q200,20 300,50 L340,80" fill="none" stroke="#ccc" stroke-width="1.5" stroke-dasharray="8,4"/>
+<text x="160" y="30" font-size="10" fill="#aaa" font-family="sans-serif">宁波→曼谷</text>
+
+<!-- 图例 -->
+<text x="16" y="350" font-size="10" fill="#807860" font-family="serif">路线:</text>
+<line x1="50" y1="348" x2="70" y2="348" stroke="#e74c3c" stroke-width="2"/>
+<text x="74" y="351" font-size="9" fill="#888" font-family="sans-serif">D1</text>
+<line x1="94" y1="348" x2="114" y2="348" stroke="#f0932b" stroke-width="2" stroke-dasharray="4,2"/>
+<text x="118" y="351" font-size="9" fill="#888" font-family="sans-serif">D2</text>
+<line x1="144" y1="348" x2="164" y2="348" stroke="#3498db" stroke-width="2"/>
+<text x="168" y="351" font-size="9" fill="#888" font-family="sans-serif">D3</text>
+<line x1="196" y1="348" x2="216" y2="348" stroke="#8e6de6" stroke-width="2"/>
+<text x="220" y="351" font-size="9" fill="#888" font-family="sans-serif">D4</text>
+<line x1="252" y1="348" x2="272" y2="348" stroke="#27ae60" stroke-width="2" stroke-dasharray="4,2"/>
+<text x="276" y="351" font-size="9" fill="#888" font-family="sans-serif">D5</text>
+<line x1="310" y1="348" x2="330" y2="348" stroke="#e74c3c" stroke-width="2"/>
+<text x="334" y="351" font-size="9" fill="#888" font-family="sans-serif">D6</text>
+<text x="16" y="16" font-size="9" fill="#b0a890" font-family="serif" font-style="italic">手绘示意 · 非精确地理</text>
+</svg></div></div>`;
+}
+
+function renderDay(idx){
+  const locs=LOCATIONS[idx],color=DAY_COLORS[idx],label=DAY_LABELS[idx],date=DAY_DATES[idx];
+  let h=`<div class="day-header"><span>${label} · ${date}</span><button class="day-route-btn" onclick="toggleRoute(${idx})">️ 当日路线</button></div>`;
+  h+=`<div class="day-route-overlay" id="route-${idx}"><svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">`;
+  const pts=[];for(let i=0;i<locs.length;i++){pts.push({x:30+(i/(locs.length-1||1))*340,y:100+Math.sin(i*0.8)*30+Math.cos(i*1.2)*15})}
+  if(pts.length>1){let d=`M${pts[0].x},${pts[0].y}`;for(let i=1;i<pts.length;i++)d+=` Q${(pts[i-1].x+pts[i].x)/2},${(pts[i-1].y+pts[i].y)/2-20} ${pts[i].x},${pts[i].y}`;h+=`<path d="${d}" fill="none" stroke="${color}" stroke-width="2.5" stroke-linecap="round"/>`;pts.forEach((p,i)=>{h+=`<circle cx="${p.x}" cy="${p.y}" r="4" fill="${color}"/><text x="${p.x}" y="${p.y-10}" text-anchor="middle" font-size="9" fill="${color}" font-family="sans-serif">${locs[i].time}</text>`})}
+  h+=`</svg></div><div class="day-timeline">`;
+  locs.forEach(l=>{const badge=l.need?'<span class="dt-badge need">⚠️需预约</span>':'';const gmapUrl=`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(l.gmap||l.name+' Bangkok')}`;h+=`<div class="dt-item"><div class="dt-dot" style="background:${color}"></div><div class="dt-card" onclick="window.open('${gmapUrl}','_blank')"><div class="dt-time">${l.time}</div><div class="dt-name">${l.name}${badge}</div><div class="dt-desc">${l.desc}</div>${l.budget?`<span class="dt-budget">${l.budget}</span>`:''}<div class="dt-gmap">🗺️ Google Map 导航</div></div></div>`});
+  h+=`</div>`;page.innerHTML=h;
+}
+function toggleRoute(idx){const el=document.getElementById('route-'+idx);if(el)el.classList.toggle('show')}
+
+function renderTodo(){
+  const todos=['确认特鲁暹罗帕亚泰路酒店和曼谷王权铂尔曼酒店已预定','芭提雅民宿已预定 (Nong Prue区)','蓝旗船日落巡航票 (D1 17:00 Phra Arthit码头)','The Sky Gallery 悬崖餐厅预定 (D2 17:30)','D3 格兰岛船票确认 (Bali Hai码头大船/快艇)','D4 泰式按摩预约 (Let\'s Relax)','D5 包车确认 (7座Van 芭提雅→曼谷 ~2500 THB)','泰国电话卡/随身WiFi已备','泰铢现金已兑换 (每人5000-8000 THB)','防晒/泳衣/舒适鞋子已装箱','春秋航空行李限重确认','Jeh O Chula用QueQ APP提前取号 (备选)'];
+  let h=`<div class="todo-card"><h3>📝 待办清单</h3>`;todos.forEach((t,i)=>{h+=`<div class="todo-item"><span class="todo-num">${i+1}.</span><span>${t}</span></div>`});h+=`</div>`;page.innerHTML=h;
+}
+
+function renderTips(){
+  let h=`<div class="tips-card"><h3>🔍 实时餐厅查询</h3>
+<p style="font-size:12px;color:var(--sub);margin-bottom:10px">调用 Google Places API (New) 获取你附近的高分餐厅</p>
+<div style="display:flex;flex-direction:column;gap:8px;margin-bottom:12px">
+<div style="display:flex;gap:6px;align-items:center">
+<input id="gKey" type="password" placeholder="粘贴你的 Google API Key" style="flex:1;padding:8px 10px;border:1px solid var(--sep);border-radius:8px;font-size:12px;font-family:inherit">
+<button id="gKeyToggle" onclick="toggleKeyVis()" style="padding:6px 10px;background:var(--card);border:1px solid var(--sep);border-radius:6px;font-size:11px;cursor:pointer">显示</button>
+</div>
+<div style="display:flex;gap:6px">
+<input id="gRadius" type="number" value="1000" min="200" max="5000" step="100" style="width:70px;padding:8px 6px;border:1px solid var(--sep);border-radius:8px;font-size:12px;font-family:inherit;text-align:center" title="搜索半径(米)">
+<input id="gMinRating" type="number" value="4.0" min="0" max="5" step="0.1" style="width:60px;padding:8px 6px;border:1px solid var(--sep);border-radius:8px;font-size:12px;font-family:inherit;text-align:center" title="最低评分">
+<button id="gSearchBtn" onclick="fetchRestaurants()" style="flex:1;padding:8px 12px;background:var(--text);color:var(--bg);border:none;border-radius:8px;font-size:12px;font-weight:600;font-family:inherit;cursor:pointer"> 查询附近餐厅</button>
+</div>
+</div>
+<div style="margin-bottom:10px">
+<p style="font-size:11px;color:var(--sub);margin-bottom:6px">📍 选择查询位置：</p>
+<div id="gLocations" style="display:flex;flex-wrap:wrap;gap:4px"></div>
+</div>
+<div id="gStatus" style="font-size:12px;color:var(--sub);margin-bottom:8px"></div>
+<div id="gResults"></div>
+</div>
+
+<div class="tips-card"><h3>💡 实用贴士</h3>
+<div class="tip-block"><h4>🧳 签证/入境</h4><p>• 中国护照赴泰可落地签或提前电子签<br>• 准备护照+返程机票+酒店订单+20000泰铢现金(抽查)<br>• 落地签排队较长, 建议提前办好电子签</p></div>
+<div class="tip-block"><h4>💰 支付 & 现金</h4><p>• <strong>现金为王</strong> — 夜市/街边摊/双条车/早市只收现金<br>• 大商场/酒店/连锁餐厅可刷卡<br>• 7-11/部分商场/King Power 支持支付宝<br>• 每人准备 <strong>5,000-8,000 THB</strong> 现金<br>• 机场汇率差, 只在机场换少量应急</p></div>
+<div class="tip-block"><h4>🚕 交通</h4><p>• Grab: 曼谷+芭提雅通用, 比路边打车便宜透明<br>• BTS/MRT: 曼谷最方便, 避开堵车<br>• 芭提雅双条车: 招手即停, 10-20 THB/人<br>• 长途大巴(Ekkamai→芭提雅): 冷气足, 带件外套<br>• 包车: 7座Van约2500 THB, 提前一天约</p></div>
+<div class="tip-block"><h4>👕 着装</h4><p>• 大皇宫/水门寺/真理寺: <strong>不穿短裤/露肩</strong>, 门口可租纱笼<br>• 泰国9月仍热, 短袖+短裤+凉鞋为主<br>• 带一件薄外套: 大巴/飞机/商场冷气很足</p></div>
+<div class="tip-block"><h4>📱 网络</h4><p>• 素万那普机场 TrueMove SIM 299 THB/15天<br>• 或提前淘宝买好泰国电话卡<br>• 大部分餐厅/商场有WiFi</p></div>
+<div class="tip-block"><h4>⚠️ 关键提醒</h4><p>• 蓝旗船末班: Phra Arthit 约19:00<br>• 格兰岛回程末班约17:00-18:00!<br>• D5包车提前一天预约<br>• D6 11:00前出发机场<br>• 泰国比中国慢1小时</p></div>
+
+<div class="tip-block">
+<h4>🛍️ 必买清单</h4>
+<p>• <strong>零食：</strong>小老板海苔 / Bento鱿鱼片 / 皇家奶片 / MAMA冬阴功泡面 / 大哥花生豆<br>• <strong>防晒护肤：</strong>Mistine防晒霜 / POND'S防晒粉 / Clear Nose祛痘凝胶 / 蛇牌爽身粉<br>• <strong>药品：</strong>金卧佛青草膏 / 上标薄荷鼻通 / 五蜈蚣标止咳丸 / <strong>虎牌膏药贴</strong> (肌肉酸痛/肩颈/腰痛, 45-80 THB/贴)<br>• <strong>沿途随时买, 机场贵10-20%</strong></p>
+</div>
+
+<div class="tip-block">
+<h4>🥤 7-11 特调配方</h4>
+<p>先拿冰杯, 再按配方混合——泰国夏日续命神器：</p>
+<p>① <strong>养乐多+维C红石榴</strong> — 红石榴打底+养乐多上层 6:4, 拍照好看<br>② <strong>康普茶+养乐多</strong> — 康普茶为主+少量养乐多提甜, 乳酸+气泡<br>③ <strong>莓果汁+柠檬气泡水</strong> — 莓果汁打底+柠檬气泡水, 酸甜清爽<br> <strong>香蕉奶+巧克力奶</strong> — Meiji香蕉奶+Sunshine巧克力奶, 奶昔口感<br>⑤ <strong>椰子水+红石榴</strong> — 椰子水为主+红石榴提色, 热带风味<br> <strong>荔枝果冻+香蕉奶+Singha苏打</strong> — 荔枝+香蕉+气泡, 清新不腻</p>
+</div>
+
+<div class="tip-block">
+<h4>🧴 PAÑPURI 香水</h4>
+<p>• 明星产品: 萃取香水油 / Care Eau de Parfum (10ml 1950 THB)<br>• 沿途门店: EmSphere M层 / Terminal 21 1楼 / ICONSIAM / Siam Paragon G+4层 / 机场出发大厅<br>• 推荐Day2或Day6买, 行程顺路</p>
+</div>
+
+</div>
+
+<div class="tips-card"><h3>🍽️ 推荐泰国餐厅</h3>
+
+<div class="tip-block">
+<h4>📍 曼谷 Phaya Thai / Siam 附近</h4>
+<p>• <strong>Lay Lao</strong> — 泰北伊桑风味 · 米其林必比登 · 炸五花肉/蟹肉饭/青木瓜沙拉 · 人均 1,100 THB<br>• <strong>Prik-Yuak</strong> — 泰式家常菜 · 米其林必比登30年 · 泰南猪腩炖蛋/Panang咖喱 · 人均 1,100 THB<br>• <strong>Chaiyarot</strong> — 65年老店 · 泰中融合菜 · 辣椒酱炸鲈鱼/炖牛舌 · 人均 300-500 THB<br>• <strong>Thai Niyom</strong> — 新派泰食馆 · 普吉虾酱猪肉/清迈烤鸡拼盘 · 人均 300-500 THB</p>
+</div>
+
+<div class="tip-block">
+<h4>📍 ICONSIAM SOOKSIAM (D5)</h4>
+<p>• <strong>Khao Soi Lamduan</strong> — 清迈咖喱鸡面 · 米其林推荐 · 椰奶咖喱面/泰北米线 · 人均 200-400 THB<br>• <strong>Thipsamai Pad Thai</strong> — 80年炒粉鼻祖 · 米其林必比登 · 虾油蛋包炒粉 · 人均 200-400 THB<br>• <strong>Je Daeng Samyan</strong> — 烤猪颈肉传奇 · 米其林推荐 · 烤猪颈肉/青木瓜沙拉 · 人均 150-300 THB<br>• <strong>Phu Thai Gai Yang</strong> — 伊桑烤鸡 · 米其林壳牌推荐 · 烤鸡/青木瓜沙拉 · 人均 150-300 THB</p>
+</div>
+
+<div class="tip-block">
+<h4>📍 芭提雅</h4>
+<p>• <strong>Mum Aroi</strong> — 海鲜传奇 · 黄咖喱蟹/盐焗鱼/海鲜拼盘 · 人均 400-800 THB<br>• <strong>The Glass House</strong> — 海滨玻璃房 · 烤河虾/鱼露脆鱼 · 人均 500-800 THB<br>• <strong>Lungsawai</strong> — 30年老店 · 蒸海蟹蘸自制酱/海边风光 · 人均 500-800 THB<br>• <strong>Nang Nual</strong> — Walking Street海鲜 · 咖喱面包蟹/生蚝/冬阴功 · 人均 500-1000 THB</p>
+</div>
+
+<div class="tip-block">
+<h4>📍 D6 Siam Paragon 附近</h4>
+<p>• <strong>Thipsamai Pad Thai</strong> — 80年传奇炒粉 · 虾油蛋包炒粉 · 人均 200-400 THB<br>• 周边街边摊船面/海南鸡饭也很棒, 人均 50-150 THB</p>
+</div>
+</div>`;
+  page.innerHTML=h;
+
+  // build location buttons for Google Places query
+  const locsDiv=document.getElementById('gLocations');
+  const presetLocs=[
+    {name:'Phaya Thai',lat:13.756,lng:100.534},
+    {name:'EmSphere',lat:13.735,lng:100.562},
+    {name:'ICONSIAM',lat:13.726,lng:100.511},
+    {name:'芭提雅民宿',lat:12.924,lng:100.882},
+    {name:'Terminal 21',lat:12.928,lng:100.883},
+    {name:'Walking Street',lat:12.924,lng:100.870},
+  ];
+  window.__gLat=13.756;window.__gLng=100.534;
+  presetLocs.forEach(l=>{
+    const b=document.createElement('button');
+    b.textContent=l.name;
+    b.style.cssText='padding:4px 8px;font-size:11px;border:1px solid var(--sep);border-radius:6px;background:var(--card);cursor:pointer;transition:all .15s';
+    b.onclick=()=>{window.__gLat=l.lat;window.__gLng=l.lng;document.querySelectorAll('#gLocations button').forEach(x=>x.style.borderColor='var(--sep)');b.style.borderColor='var(--blue)'};
+    locsDiv.appendChild(b);
+  });
+}
+
+function toggleKeyVis(){
+  const inp=document.getElementById('gKey');
+  const btn=document.getElementById('gKeyToggle');
+  if(inp.type==='password'){inp.type='text';btn.textContent='隐藏'}else{inp.type='password';btn.textContent='显示'}
+}
+
+async function fetchRestaurants(){
+  const apiKey=document.getElementById('gKey').value.trim();
+  const radius=parseInt(document.getElementById('gRadius').value)||1000;
+  const minRating=parseFloat(document.getElementById('gMinRating').value)||4.0;
+  const statusEl=document.getElementById('gStatus');
+  const resultsEl=document.getElementById('gResults');
+  const lat=window.__gLat,lng=window.__gLng;
+
+  if(!apiKey){statusEl.textContent='⚠️ 请先输入 Google API Key';return}
+  statusEl.textContent='⏳ 正在查询...';resultsEl.innerHTML='';
+
+  const url='https://places.googleapis.com/v1/places:searchNearby';
+  const headers={'Content-Type':'application/json','X-Goog-Api-Key':apiKey,'X-Goog-FieldMask':'places.displayName,places.rating,places.userRatingCount,places.formattedAddress,places.priceLevel,places.googleMapsUri,places.types'};
+  const payload={includedTypes:['restaurant'],excludedTypes:['tourist_attraction','travel_agency'],maxResultCount:15,locationRestriction:{circle:{center:{latitude:lat,longitude:lng},radius:radius}}};
+
+  try{
+    const resp=await fetch(url,{method:'POST',headers:headers,body:JSON.stringify(payload)});
+    if(!resp.ok){const err=await resp.json().catch(()=>({}));throw new Error(err.error?.message||`HTTP ${resp.status}`)}
+    const data=await resp.json();
+    const places=data.places||[];
+    const filtered=places.filter(p=>(p.rating||0)>=minRating);
+    if(!filtered.length){statusEl.textContent=`✅ 查询完成, 但未找到评分 ≥ ${minRating} 的餐厅`;return}
+    statusEl.textContent=`✅ 找到 ${filtered.length} 家餐厅 (半径${radius}m, 最低${minRating}分)`;
+    let h='';
+    filtered.sort((a,b)=>(b.rating||0)-(a.rating||0));
+    filtered.forEach((p)=>{
+      const name=p.displayName?.text||'未知';
+      const rating=p.rating||0;
+      const count=p.userRatingCount||0;
+      const addr=p.formattedAddress||'';
+      const price=['','💰','💰💰','💰💰','💰💰💰💰'][p.priceLevel||0]||'';
+      const gmap=p.googleMapsUri||'';
+      const isThai=p.types?.includes('thai_restaurant');
+      h+=`<div style="background:var(--card);border-radius:10px;padding:10px 12px;margin-bottom:8px;box-shadow:0 1px 4px rgba(0,0,0,.04)">
+        <div style="display:flex;justify-content:space-between;align-items:start">
+          <div style="flex:1">
+            <span style="font-size:13px;font-weight:600">${name}</span>
+            ${isThai?'<span style="font-size:10px;background:#fef3cd;color:#b8860b;padding:1px 5px;border-radius:3px;margin-left:6px;font-weight:600">泰国菜</span>':''}
+            ${price}
+          </div>
+          <div style="font-size:12px;color:var(--orange);font-weight:700;white-space:nowrap">⭐ ${rating} (${count})</div>
+        </div>
+        <div style="font-size:11px;color:var(--sub);margin-top:4px">📍 ${addr}</div>
+        ${gmap?`<a href="${gmap}" target="_blank" rel="noopener" style="display:inline-block;margin-top:6px;font-size:11px;color:var(--blue);text-decoration:none;padding:3px 8px;background:#e8f4fd;border-radius:6px;font-weight:600">🗺️ Google Map</a>`:''}
+      </div>`;
+    });
+    resultsEl.innerHTML=h;
+  }catch(e){statusEl.textContent=` ${e.message}`;console.error(e)}
+}
+
+render(0);
+</script>
+</body>
+</html>
