@@ -15,8 +15,13 @@ body{font-family:'Noto Sans SC',-apple-system,BlinkMacSystemFont,sans-serif;back
 .tab-bar::-webkit-scrollbar{display:none}
 .tb{flex-shrink:0;padding:10px 14px;font-size:13px;font-weight:500;color:var(--sub);background:none;border:none;cursor:pointer;border-bottom:2px solid transparent;transition:all .2s}
 .tb.active{color:var(--text);font-weight:700;border-bottom-color:var(--text)}
-#page{touch-action:pan-y;cursor:grab}
+#page{touch-action:pan-y;cursor:grab;will-change:transform,opacity}
 #page.swipe-dragging{cursor:grabbing;user-select:none}
+#page.page-enter-next{animation:page-enter-next .32s cubic-bezier(.22,.61,.36,1) both}
+#page.page-enter-prev{animation:page-enter-prev .32s cubic-bezier(.22,.61,.36,1) both}
+@keyframes page-enter-next{from{opacity:.35;transform:translateX(28px)}to{opacity:1;transform:translateX(0)}}
+@keyframes page-enter-prev{from{opacity:.35;transform:translateX(-28px)}to{opacity:1;transform:translateX(0)}}
+@media (prefers-reduced-motion:reduce){#page.page-enter-next,#page.page-enter-prev{animation:none}}
 .section{display:none;padding:16px;padding-bottom:60px}.section.active{display:block}
 .countdown-card{background:var(--card);border-radius:16px;padding:20px 20px 16px;margin-bottom:16px;box-shadow:0 1px 8px rgba(0,0,0,.04)}
 .cc-label{font-size:12px;color:var(--sub);margin-bottom:2px}
@@ -126,8 +131,9 @@ const LOCATIONS=[
 ],
 [
   {time:'07:00',name:'Bali Hai 码头',desc:'Grab→大船→格兰岛',budget:'30 THB',type:'transport',need:false,gmap:'Bali+Hai+Pier+Pattaya'},
-  {time:'08:30',name:'Tawaen Beach 达汶海滩',desc:'最热闹海滩! 拖曳伞/摩托艇',budget:'拖曳伞600-800',type:'spot',need:false,gmap:'Tawaen+Beach+Koh+Larn'},
-  {time:'10:00',name:'Tien Beach 浮潜',desc:'水质最清! 浮潜看热带鱼',type:'spot',need:false,gmap:'Tien+Beach+Koh+Larn'},
+  {time:'08:00',name:'租摩托车攻略',desc:'上岛后租车环岛：先拍车况和油量，确认价格、押金与还车点，记得戴头盔',budget:'约200-300 THB/天',type:'transport',need:false,gmap:'Koh+Larn+motorbike+rental'},
+  {time:'08:30',name:'Tawaen Beach 达汶海滩（爱玩不玩）',desc:'最热闹海滩! 拖曳伞/摩托艇',budget:'拖曳伞600-800',type:'spot',need:false,gmap:'Tawaen+Beach+Koh+Larn'},
+  {time:'10:00',name:'Tien Beach 浮潜（爱浮不浮）',desc:'水质最清! 浮潜看热带鱼',type:'spot',need:false,gmap:'Tien+Beach+Koh+Larn'},
   {time:'12:00',name:'海边海鲜午餐',desc:'海滩旁海鲜餐厅',budget:'~300 THB',type:'food',need:false,gmap:'seafood+Koh+Larn'},
   {time:'13:00',name:'Samae Beach 萨美海滩',desc:'最安静海滩 粉色沙滩椅放松',type:'spot',need:false,gmap:'Samae+Beach+Koh+Larn'},
   {time:'14:30',name:'Nual Beach / 观景台',desc:'猴子海滩+风车全景',type:'spot',need:false,gmap:'Nual+Beach+Koh+Larn'},
@@ -136,8 +142,8 @@ const LOCATIONS=[
 ],
 [
   {time:'07:30',name:'民宿早餐 / 7-11简餐',desc:'泰式简餐',budget:'~80 THB',type:'food',need:false,gmap:'breakfast+Pattaya'},
-  {time:'08:30',name:'四方水上市场',desc:'杜拉拉升职记取景地',budget:'200 THB',type:'spot',need:false,gmap:'Pattaya+Floating+Market'},
-  {time:'11:00',name:'真理寺',desc:'世界最大全木雕建筑!',budget:'500 THB',type:'spot',need:false,gmap:'Sanctuary+of+Truth+Pattaya'},
+  {time:'08:30',name:'没事干',desc:'自由活动 / 睡到自然醒',type:'free',need:false,gmap:'Pattaya'},
+  {time:'11:00',name:'真理寺（爱去不去）',desc:'世界最大全木雕建筑!',budget:'500 THB',type:'spot',need:false,gmap:'Sanctuary+of+Truth+Pattaya'},
   {time:'13:00',name:'Terminal 21 Pattaya',desc:'每层一个世界城市! Pier 21美食超便宜',budget:'30-80 THB',type:'spot',need:false,gmap:'Terminal+21+Pattaya'},
   {time:'16:00',name:'泰式按摩',desc:"Let's Relax 正宗泰式按摩",budget:'~600 THB',type:'spot',need:true,gmap:'Thai+massage+Pattaya'},
   {time:'17:30',name:'帕山观景台日落',desc:'芭提雅最佳日落点',budget:'免费',type:'spot',need:false,gmap:'Pattaya+Viewpoint+Khao+Phra+Tamnak'},
@@ -179,11 +185,21 @@ tabBar.addEventListener('click',e=>{const b=e.target.closest('.tb');if(!b)return
 const page=document.getElementById('page');
 function selectTab(idx){
   const nextIdx=Math.max(0,Math.min(TABS.length-1,idx));
+  const direction=nextIdx-currentIdx;
+  if(direction===0)return;
   currentIdx=nextIdx;
   tabBar.querySelectorAll('.tb').forEach((button,i)=>button.classList.toggle('active',i===nextIdx));
   const activeTab=tabBar.querySelector(`.tb[data-idx="${nextIdx}"]`);
   if(activeTab)activeTab.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});
-  render(nextIdx);
+  renderPage(nextIdx,direction);
+}
+
+function renderPage(idx,direction=0){
+  page.classList.remove('page-enter-next','page-enter-prev');
+  render(idx);
+  if(!direction)return;
+  void page.offsetWidth;
+  page.classList.add(direction>0?'page-enter-next':'page-enter-prev');
 }
 
 let swipePointerId=null,swipeStartX=0,swipeStartY=0,swipeStartTarget=null;
@@ -431,7 +447,9 @@ function renderTips(){
 <div class="tips-card"><h3>💡 实用贴士</h3>
 <div class="tip-block"><h4>🧳 签证/入境</h4><p>• 中国护照赴泰可落地签或提前电子签<br>• 准备护照+返程机票+酒店订单+20000泰铢现金(抽查)<br>• 落地签排队较长, 建议提前办好电子签</p></div>
 <div class="tip-block"><h4>💰 支付 & 现金</h4><p>• <strong>现金为王</strong> — 夜市/街边摊/双条车/早市只收现金<br>• 大商场/酒店/连锁餐厅可刷卡<br>• 7-11/部分商场/King Power 支持支付宝<br>• 每人准备 <strong>5,000-8,000 THB</strong> 现金<br>• 机场汇率差, 只在机场换少量应急</p></div>
-<div class="tip-block"><h4>🚕 交通</h4><p>• Grab: 曼谷+芭提雅通用, 比路边打车便宜透明<br>• BTS/MRT: 曼谷最方便, 避开堵车<br>• 芭提雅双条车: 招手即停, 10-20 THB/人<br>• 长途大巴(Ekkamai→芭提雅): 冷气足, 带件外套<br>• 包车: 7座Van约2500 THB, 提前一天约</p></div>
+<div class="tip-block"><h4>🚕 交通</h4><p>• Grab: 曼谷+芭提雅通用, 比路边打车便宜透明<br>• BTS/MRT: 曼谷最方便, 避开堵车<br>• 长途大巴(Ekkamai→芭提雅): 冷气足, 带件外套<br>• 包车: 7座Van约2500 THB, 提前一天约</p></div>
+<div class="tip-block"><h4>🛻 芭提雅双条车攻略</h4><p>• <strong>常规乘坐：</strong>沿海滨路、二路和中天海滩线招手即停，上车前确认方向<br>• <strong>费用：</strong>短途通常10 THB/人，跨区域约10-20 THB/人；包车/包车去远处要先谈价<br>• <strong>乘坐方法：</strong>看到空车按路线方向招手，上车后按车顶铃下车，下车时从后方下车并付现金<br>• <strong>路线参考：</strong>蓝色线往中天海滩，绿色线连接码头、Big C等市区点，紫色线沿素坤逸路往北，橙色线前往真理寺/那库鲁方向<br>• 人多或行李多时直接 Grab 更省心，晚上尽量选择明亮路段上下车。</p>
+<img src="assets/pattaya-songthaew-route-map.png" alt="芭提雅双条车路线图" style="display:block;width:100%;height:auto;margin-top:8px;border-radius:12px;background:#9ed3f5"></div>
 <div class="tip-block"><h4>👕 着装</h4><p>• 大皇宫/水门寺/真理寺: <strong>不穿短裤/露肩</strong>, 门口可租纱笼<br>• 泰国9月仍热, 短袖+短裤+凉鞋为主<br>• 带一件薄外套: 大巴/飞机/商场冷气很足</p></div>
 <div class="tip-block"><h4>📱 网络</h4><p>• 素万那普机场 TrueMove SIM 299 THB/15天<br>• 或提前淘宝买好泰国电话卡<br>• 大部分餐厅/商场有WiFi</p></div>
 <div class="tip-block"><h4>⚠️ 关键提醒</h4><p>• 蓝旗船末班: Phra Arthit 约19:00<br>• 格兰岛回程末班约17:00-18:00!<br>• D5包车提前一天预约<br>• D6 11:00前出发机场<br>• 泰国比中国慢1小时</p></div>
